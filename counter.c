@@ -17,9 +17,11 @@ int main()
   int i = 0, count[COUNT_SIZE];
   int other = 0;
 
+ 
+
   // request and read in the string from the user
   printf("Enter text for analysis: ");
-  while ( (input = getchar()) != '\n' ) {
+  while ( ((input = getchar()) != '\n') && (i < (BUFFER_SIZE - 1))) {
     buffer[i++] = input;
   }
   buffer[i] = '\0';
@@ -36,6 +38,7 @@ int main()
   for (i = 0; i < strlen(buffer); i++) {
     curchar = toupper(buffer[i]);
     if (curchar >= 65 && curchar <= 90) count[curchar - 65]++;
+
     else other++;
   }
 
@@ -48,10 +51,11 @@ int main()
                                count[i],
                                (((float) count[i]) / strlen(buffer)) * 100);
   }
+
   // Output the number of other characters
   printf("%-10s%-15d%-15.2f\n","Other",
                               other,
-                              (((float) count[i]) / strlen(buffer)) * 100);
+                              ((other[i]) / strlen(buffer)) * 100);
 
   // Find the max and min occuring character in the string, in particular the
   // position in the count array of each character
